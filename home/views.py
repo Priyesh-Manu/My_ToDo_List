@@ -16,8 +16,8 @@ def home(request):
         return redirect ('/')
     return render(request,'index.html',tasks)
 
-def completed_task(request, task_name):
-    obj = MyTask.objects.get(task_name=task_name)
+def completed_task(request, id):
+    obj = MyTask.objects.get(id=id)
     
     com_task = CompletedTask(
         completed_task_name=obj.task_name,
@@ -26,4 +26,9 @@ def completed_task(request, task_name):
     )
     com_task.save()
     obj.delete()
-    return redirect('home') 
+    return redirect('home')
+
+def delete_completed_task(request, id):  # Rename the parameter to avoid conflict
+    obj = CompletedTask.objects.get(id=id)
+    obj.delete()
+    return redirect('home')
