@@ -30,7 +30,7 @@
                         <h2 style="font-family: 'Pacifico', cursive;">{{ task.task_name }}</h2>
                         <p style="font-family: 'Pacifico', cursive;">{{ task.task_des }}</p>
                         <a href=""><button>Edit</button></a>
-                        <a href="{% url 'completed' task.id %}"><button>Completed</button></a>
+                        <a href="{% url 'completed' task.id %}#comtask"><button>Completed</button></a>
                         <!-- Tasks will be dynamically added here -->
                     </div><br>
                     {% empty %}
@@ -42,13 +42,14 @@
                 </div>
                 
                 <!-- Completed Tasks -->
-                <div class="col-md-6" id="mytask">
+                <div class="col-md-6" id="comtask">
                     <h2>Completed Tasks</h2><br>
                     {% for task in com_task %}
                     <div class="p-4 text-decoration-line-through" style="background-color: #a8aaac; box-shadow: 0 4px 8px rgb(104, 81, 81);">
                         <h6>{{ task.completed_task_date }}</h6>
                         <h2 style="font-family: 'Pacifico', cursive;">{{ task.completed_task_name }}</h2>
                         <p style="font-family: 'Pacifico', cursive;">{{ task.completed_task_des }}</p>
+                        <a href="{% url 'redo' task.id %}#mytask"><button>Redo</button></a>&nbsp;
                         <a href="{% url 'delete' task.id %}"><button>Delete</button></a>
                         
                     <!-- Tasks will be dynamically added here -->

@@ -32,3 +32,15 @@ def delete_completed_task(request, id):  # Rename the parameter to avoid conflic
     obj = CompletedTask.objects.get(id=id)
     obj.delete()
     return redirect('home')
+
+def redo_completed_task(request, id): 
+    obj = CompletedTask.objects.get(id=id)
+    
+    redo_com_task = MyTask(
+        task_name=obj.completed_task_name,
+        task_des=obj.completed_task_des,
+        task_date=obj.completed_task_date
+    )
+    redo_com_task.save()
+    obj.delete()
+    return redirect('home')
