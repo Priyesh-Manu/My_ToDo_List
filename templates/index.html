@@ -12,7 +12,8 @@
             {% csrf_token %}
             <input type="text" name="name" placeholder="Name of the task" id="newTask" required><br>
             <input type="text" name="description" placeholder="Description of the task"><br>
-            <input type="date" name="date" placeholder="Date" ><br>
+            <input type="date" name="date" placeholder="Date" value="{% now 'Y-m-d' %}">
+            <br>
             <a href="#mytask"></a><button type="submit">Add</button></a>&nbsp;&nbsp;
             <a href="{% url 'home' %}"><button type="cancel">Cancel</button></a>
         </form>
@@ -22,15 +23,22 @@
             <div class="row task-list">
             <!-- My Tasks -->
             <div class="col-md-6" id="mytask">
-                <h2>My Tasks</h2><br>
-                <div class="p-4 pb-0" style="background-color: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.39);">
-                <h6>{{ task.date }}</h6>
-                <h2>{{ task.name }} - {{ task.priority }}</h2>
-                <p>{{ task.description }}</p>
-                {% comment %} <a href="{% url 'update' task.name %}"><button>Edit</button></a>
-                <a href="{% url 'delete' task.name %}"><button>Completed</button></a><br><br> {% endcomment %}
+                <h2 >My Tasks</h2><br>
+                {% for task in my_task %}
+                <div class="p-4 " style="background-color: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.39); ">
+                <h6>{{ task.task_date }}</h6>
+                <h2 style="font-family: 'Pacifico', cursive;">{{ task.task_name }}</h2>
+                <p style="font-family: 'Pacifico', cursive;">{{ task.task_des }}</p>
+                <a href=""><button>Edit</button></a>
+                <a href=""><button>Completed</button></a>
                 <!-- Tasks will be dynamically added here -->
-                </div><br><br>
+                </div><br>
+                {% empty %}
+                <div class="p-4 pb-0" style="background-color: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.39);">
+                    <h3 style="font-family: 'Pacifico', cursive;">No tasks created!!</h3><br>
+                </div>                     
+                {% endfor %}
+                <br>
             </div>
             
             <!-- Completed Tasks -->
