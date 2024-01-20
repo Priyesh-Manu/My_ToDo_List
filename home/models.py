@@ -8,3 +8,11 @@ class MyTask(models.Model):
     
     def __str__(self):
         return self.task_name
+    
+class CompletedTask(models.Model):
+    completed_task_name = models.CharField(max_length=100)
+    completed_task_des = models.TextField()
+    completed_task_date = models.DateField(default=datetime.date.today)
+    
+    def __str__(self):
+        return self.completed_task_name

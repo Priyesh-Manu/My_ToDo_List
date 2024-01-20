@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
-from .models import MyTask
+from .models import MyTask,CompletedTask
 # Create your views here.
 
 def home(request):
     tasks={
-        'my_task':MyTask.objects.all()
+        'my_task':MyTask.objects.all(),
+        'com_task':CompletedTask.objects.all(),
     }
     if request.method=='POST':
         task_name = request.POST['name']
@@ -14,3 +15,15 @@ def home(request):
         user.save()
         return redirect ('/')
     return render(request,'index.html',tasks)
+
+def completed_task(request, task_name):
+    obj = MyTask.objects.get(task_name=task_name)
+    
+    com_task = CompletedTask(
+        completed_task_name=obj.task_name,
+        completed_task_des=obj.task_des,
+        completed_task_date=obj.task_date
+    )
+    com_task.save()
+    obj.delete()
+    return redirect('home') 
