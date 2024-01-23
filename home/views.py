@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import MyTask,CompletedTask
+from .models import MyTask,CompletedTask,Contact
 from . forms import ModelForm
 # Create your views here.
 
@@ -63,3 +63,11 @@ def edit_task(request, id):
 
 def about(request):
     return render(request,'about.html')
+def contact(request):
+    if request.method =='POST':
+        email = request.POST['contactemail']
+        contact_message = request.POST['contactmsg']
+        user = Contact(email=email,message=contact_message)
+        user.save()
+        return redirect('home')
+    return render(request,'contact.html')

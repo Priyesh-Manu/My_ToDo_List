@@ -16,3 +16,11 @@ class CompletedTask(models.Model):
     
     def __str__(self):
         return self.completed_task_name
+
+class Contact(models.Model):
+    email = models.EmailField(max_length=254)
+    message=models.TextField()
+    message_date = models.DateField(auto_now=True)
+    message_replied = models.BooleanField(default=False)
+    
+    
