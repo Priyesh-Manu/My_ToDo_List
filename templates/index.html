@@ -50,7 +50,7 @@
                         <h2 style="font-family: 'Pacifico', cursive;">{{ task.completed_task_name }}</h2>
                         <p style="font-family: 'Pacifico', cursive;">{{ task.completed_task_des }}</p>
                         <a href="{% url 'redo' task.id %}#mytask"><button>Redo</button></a>&nbsp;
-                        <a href="{% url 'delete' task.id %}"><button>Delete</button></a>
+                        <a href="{% url 'delete' task.id %}#comtask "><button>Delete</button></a>
                         
                     <!-- Tasks will be dynamically added here -->
                     </div><br>

@@ -61,8 +61,6 @@ def edit_task(request, id):
     }
     return render(request, 'edit.html', form_new)
 
-def about(request):
-    return render(request,'about.html')
 def contact(request):
     if request.method =='POST':
         email = request.POST['contactemail']
@@ -71,3 +69,6 @@ def contact(request):
         user.save()
         return redirect('home')
     return render(request,'contact.html')
+
+def about(request):
+    return render(request,'about.html')
