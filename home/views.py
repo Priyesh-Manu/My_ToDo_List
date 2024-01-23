@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import MyTask,CompletedTask
+from . forms import ModelForm
 # Create your views here.
 
 def home(request):
@@ -44,3 +45,18 @@ def redo_completed_task(request, id):
     redo_com_task.save()
     obj.delete()
     return redirect('home')
+
+def edit_task(request, id):
+    obj = MyTask.objects.get(id=id)
+    Forms = ModelForm(request.POST or None, request.FILES, instance=obj)
+
+    if request.method == 'POST':
+        if Forms.is_valid():
+            Forms.save()
+            return redirect('home')
+
+    form_new = {
+        'obj': obj,
+        'form': Forms
+    }
+    return render(request, 'edit.html', form_new)

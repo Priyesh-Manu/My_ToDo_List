@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <div class="pt-4 container">
+        <div class="text-center">
+            <br>
+            <img src="{% static "image/head.png" %}" alt="" id="head">
+            
+        </div>
+        
+        <div class="p-4">
+            
+            <form method="post">
+                <h2>Edit Your Task</h2><br>
+                {% csrf_token %}
+                <input type="text" name="task_name" placeholder="Name of the task" value="{{ obj.task_name }}" required><br>
+                <input type="text" name="task_des" placeholder="Description of the task" value="{{ obj.task_des }}"><br>
+                <input type="date" name="task_date" value="{{ obj.task_date }}">
+                <br>
+                <button type="submit">Submit</button>&nbsp;&nbsp;
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
