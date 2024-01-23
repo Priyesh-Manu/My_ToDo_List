@@ -60,3 +60,6 @@ def edit_task(request, id):
         'form': Forms
     }
     return render(request, 'edit.html', form_new)
+
+def about(request):
+    return render(request,'about.html')

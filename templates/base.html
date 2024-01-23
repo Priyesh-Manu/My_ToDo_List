@@ -25,10 +25,13 @@
               <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#mytask">My Task</a>
+              <a class="nav-link active" href="{% url 'home' %}#mytask">My Task</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Contact Us</a>
+              <a class="nav-link active" href="{% url 'about' %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Contact</a>
             </li>
             
           </ul>

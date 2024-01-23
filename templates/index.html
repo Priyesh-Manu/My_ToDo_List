@@ -12,11 +12,11 @@
             {% csrf_token %}
             <input type="text" name="name" placeholder="Name of the task" id="newTask" required><br>
             <input type="text" name="description" placeholder="Description of the task"><br>
-            <input type="date" name="date" placeholder="Date" value="{% now 'Y-m-d' %}">
+            <input type="date" name="date" placeholder="Date" value="{% now 'Y-m-d' %}" >
             <br>
             <a href="#mytask"><button type="submit">Add</button></a>&nbsp;&nbsp;
             <a href="{% url 'home' %}"><button type="cancel">Cancel</button></a>
-        </form>
+        </form><br><br>
         </div>
 
         <div class="p-4" >
