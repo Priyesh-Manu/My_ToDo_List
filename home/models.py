@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 import datetime
 # Create your models here.
 class MyTask(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     task_name = models.CharField(max_length=100)
     task_des = models.TextField()
     task_date = models.DateField(default=datetime.date.today)
@@ -10,6 +12,7 @@ class MyTask(models.Model):
         return self.task_name
     
 class CompletedTask(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     completed_task_name = models.CharField(max_length=100)
     completed_task_des = models.TextField()
     completed_task_date = models.DateField(default=datetime.date.today)
