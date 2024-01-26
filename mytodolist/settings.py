@@ -127,5 +127,10 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# LOGIN_REDIRECT_URL: Specifies the URL where users are redirected after successful login.
+# In this case, users will be redirected to the root URL ('/') after logging in.
 LOGIN_REDIRECT_URL = '/'
+
+# LOGIN_URL: Specifies the URL where users are directed to log in when accessing protected resources.
+# If a user tries to access a protected resource without being logged in, they will be redirected to '/account/login/'.
 LOGIN_URL = '/account/login/'

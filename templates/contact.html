@@ -2,31 +2,40 @@
 {% load static %}
 {% block content %}
 
+<!-- Container for the contact form -->
 <div class="pt-3">
     <div class="container">
-      <div class="row">
-        <div class="col-md-8 mx-auto text-center p-4">
-          <h1 class="font-weight-bold"><strong>Contact Us</strong></h1><br>
-          <p class="fs-5">We would love to hear from you! Reach out to us on mytodolist@gmail.com or use the form below to share any feedback or if you have any questions.</p>
+        <div class="row">
+            <!-- Centered text and heading -->
+            <div class="col-md-8 mx-auto text-center p-4">
+                <h1 class="font-weight-bold"><strong>Contact Us</strong></h1><br>
+                <p class="fs-5">We would love to hear from you! Reach out to us on mytodolist@gmail.com or use the form below to share any feedback or if you have any questions.</p>
+            </div>
         </div>
-      </div>
     </div>
 
+    <!-- Contact form section -->
     <div class="text-top">
+        <!-- Form for user feedback -->
         <form action="" method="post" encrypt="multipart/form-data" style="max-width: 400px;">
             {% csrf_token %}
+            
+            <!-- Email input field -->
             <input type="email" id="contactemail" name="contactemail" placeholder="Your Email" required>
+            
+            <!-- Message textarea -->
             <textarea id="contactmsg" name="contactmsg" placeholder="Type your message here" required style="height: 100px; width:100%"></textarea>
+            
             <br><br>
+            
+            <!-- Submit button with onclick event calling "message()" function -->
             <button type="submit" onclick="message()">Submit</button>
         </form><br>
     </div>
-        
-      <br><br><br><br>
 
-    <!-- End of the disclaimer -->
+    <!-- Spacing for better visual appearance -->
+    <br><br><br><br>
+</div>
+<!-- End of the content -->
 
-    
-  </div>
-  <!-- End of the content -->
 {% endblock content %}

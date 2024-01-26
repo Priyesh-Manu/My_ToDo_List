@@ -2,37 +2,50 @@
 {% load static %}
 {% block content %}
 
-    <div class=" pt-4 container">
-        <div class="text-center">
+<!-- Container for the main content -->
+<div class="pt-4 container">
+    <div class="text-center">
         <br>
-        <img src="{% static "image/head.png" %}" alt="" id="head" >
-        </div>
-        <div class="p-4">
+        <!-- Image for visual representation -->
+        <img src="{% static "image/head.png" %}" alt="" id="head">
+    </div>
+
+    <!-- Form for adding a new task -->
+    <div class="p-4">
         <form method="post">
             {% csrf_token %}
             
+            <!-- Display a welcome message if the user is authenticated -->
             {% if user.is_authenticated %}
-            {% for message in messages %}
-            <h3 class="pb-2"> Hai {{message}} add your Task</h3>
-            {% endfor %}
+                {% for message in messages %}
+                    <h3 class="pb-2"> Hai {{message}} add your Task</h3>
+                {% endfor %}
             {% else %}
-            <h3 class="pb-2">Add your Task</h3>
+                <h3 class="pb-2">Add your Task</h3>
             {% endif %}
+            
+            <!-- Input fields for task details -->
             <input type="text" name="name" placeholder="Name of the task" id="newTask" required><br>
-            <input type="text" name="description" placeholder="Description of the task"><br>
+            <input type="text" name="description" placeholder="Description of the task" value="No Description"><br>
             <input type="date" name="date" placeholder="Date" value="{% now 'Y-m-d' %}" >
+
             <br>
+            
+            <!-- Add and Cancel buttons with links -->
             <a href="#mytask"><button type="submit">Add</button></a>&nbsp;&nbsp;
             <a href="{% url 'home' %}"><button type="cancel">Cancel</button></a>
         </form><br><br>
-        </div>
+    </div>
 
-        <div class="p-4" >
-            <div class="row task-list">
-                <!-- My Tasks -->
-                <div class="col-md-6"  id="mytask">
-                    <h2 >My Tasks</h2><br>
-                    {% for task in my_task %}
+    <!-- Task list section -->
+    <div class="p-4" >
+        <div class="row task-list">
+            <!-- My Tasks column -->
+            <div class="col-md-6"  id="mytask">
+                <h2 >My Tasks</h2><br>
+                
+                <!-- Display user's tasks -->
+                {% for task in my_task %}
                     <div class="p-4 " style="background-color: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.39); ">
                         <h6>{{ task.task_date }}</h6>
                         <h2 style="font-family: 'Pacifico', cursive;">{{ task.task_name }}</h2>
@@ -41,38 +54,39 @@
                         <a href="{% url 'completed' task.id %}#comtask"><button>Completed</button></a>
                         <!-- Tasks will be dynamically added here -->
                     </div><br>
-                    {% empty %}
+                {% empty %}
+                    <!-- Display message if no tasks are created -->
                     <div class="p-4 pb-0" style="background-color: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.39);">
                         <h3 style="font-family: 'Pacifico', cursive;">No tasks created!!</h3><br>
-                    </div>                     
-                    {% endfor %}
-                    <br>
-                </div>
+                    </div>
+                {% endfor %}
+                <br>
+            </div>
+            
+            <!-- Completed Tasks column -->
+            <div class="col-md-6" id="comtask">
+                <h2>Completed Tasks</h2><br>
                 
-                <!-- Completed Tasks -->
-                <div class="col-md-6" id="comtask">
-                    <h2>Completed Tasks</h2><br>
-                    {% for task in com_task %}
+                <!-- Display completed tasks -->
+                {% for task in com_task %}
                     <div class="p-4 text-decoration-line-through" style="background-color: #a8aaac; box-shadow: 0 4px 8px rgb(104, 81, 81);">
                         <h6>{{ task.completed_task_date }}</h6>
                         <h2 style="font-family: 'Pacifico', cursive;">{{ task.completed_task_name }}</h2>
                         <p style="font-family: 'Pacifico', cursive;">{{ task.completed_task_des }}</p>
                         <a href="{% url 'redo' task.id %}#mytask"><button>Redo</button></a>&nbsp;
-                        <a href="{% url 'delete' task.id %}#comtask "><button>Delete</button></a>
-                        
-                    <!-- Tasks will be dynamically added here -->
+                        <a href="{% url 'delete' task.id %}#comtask"><button>Delete</button></a>
+                        <!-- Tasks will be dynamically added here -->
                     </div><br>
-                    {% empty %}
+                {% empty %}
+                    <!-- Display message if no tasks are completed -->
                     <div class="p-4 pb-0" style="background-color: #a8aaac; box-shadow: 0 4px 8px rgb(104, 81, 81);">
                         <h3 style="font-family: 'Pacifico', cursive;">Tasks are not completed!!</h3><br>
-                    </div>                     
-                    {% endfor %}
-                    <br><br>
-                </div>
+                    </div>
+                {% endfor %}
+                <br><br>
             </div>
         </div>
-    
-    
     </div>
+</div>
 
 {% endblock content %}

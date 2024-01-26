@@ -2,27 +2,34 @@
 {% load static %}
 {% block content %}
 
-    <div class="pt-4 container">
-        <div class="text-center">
-            <br>
-            <img src="{% static "image/head.png" %}" alt="" id="head">
-            
-        </div>
-        
-        <div class="p-4">
-            
-            <form method="post">
-                <h2>Edit Your Task</h2><br>
-                {% csrf_token %}
-                <input type="text" name="task_name" placeholder="Name of the task" value="{{ obj.task_name }}" required><br>
-                <input type="text" name="task_des" placeholder="Description of the task" value="{{ obj.task_des }}" ><br>
-                <input type="date" name="task_date" value="{{ obj.task_date|date:'Y-m-d' }}" required>
-
-
-                <br>
-                <button type="submit" onclick="update()">Submit</button>&nbsp;&nbsp;
-            </form>
-        </div>
+<!-- Container for the edit task form -->
+<div class="pt-4 container">
+    <div class="text-center">
+        <br>
+        <!-- Image for visual representation -->
+        <img src="{% static "image/head.png" %}" alt="" id="head">
     </div>
+    
+    <!-- Form for editing a task -->
+    <div class="p-4">
+        <form method="post">
+            <!-- Heading for the form -->
+            <h2>Edit Your Task</h2><br>
+            
+            <!-- CSRF token for form security -->
+            {% csrf_token %}
+            
+            <!-- Input fields for task name, description, and date -->
+            <input type="text" name="task_name" placeholder="Name of the task" value="{{ obj.task_name }}" required><br>
+            <input type="text" name="task_des" placeholder="Description of the task" value="{{ obj.task_des }}" required><br>
+            <input type="date" name="task_date" value="{{ obj.task_date|date:'Y-m-d' }}" required>
+
+            <br>
+            
+            <!-- Submit button to update the task -->
+            <button type="submit">Submit</button>&nbsp;&nbsp;
+        </form>
+    </div>
+</div>
 
 {% endblock content %}
