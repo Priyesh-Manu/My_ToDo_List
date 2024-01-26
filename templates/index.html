@@ -10,6 +10,14 @@
         <div class="p-4">
         <form method="post">
             {% csrf_token %}
+            
+            {% if user.is_authenticated %}
+            {% for message in messages %}
+            <h3 class="pb-2"> Hai {{message}} add your Task</h3>
+            {% endfor %}
+            {% else %}
+            <h3 class="pb-2">Add your Task</h3>
+            {% endif %}
             <input type="text" name="name" placeholder="Name of the task" id="newTask" required><br>
             <input type="text" name="description" placeholder="Description of the task"><br>
             <input type="date" name="date" placeholder="Date" value="{% now 'Y-m-d' %}" >

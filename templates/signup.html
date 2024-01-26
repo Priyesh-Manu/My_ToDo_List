@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <!-- Start of the content -->
+
+  <div class="pt-4">
+      
+     <div class="p-3">
+        <form action="" method="post" style="width:400px; background-color:#fcfafa; box-shadow: 8px 15px 10px rgba(0, 0, 0, 0.1);">
+          {% csrf_token %}
+          <h3 class="text-center">Join with us</h3>
+            
+            <!-- Username input field -->
+            <label for="option">User Name:</label>
+            <input type="text" name="username" required >
+
+            <!-- First Name input field -->
+            <label for="option">First Name:</label>
+            <input type="text" name="firstname" required >
+
+            <!-- Last Name input field -->
+            <label for="option">Last Name:</label>
+            <input type="text" name="lastname" >
+
+            <!-- Email input field -->
+            <label for="option">E-mail:</label>
+            <input type="email" name="email" required >
+
+            <!-- Create Password input field -->
+            <label for="option">Create Password:</label>
+            <input type="password" name="crpassword" required >
+
+            <!-- Confirm Password input field -->
+            <label for="option">Confirm Password:</label>
+            <input type="password" name="cnpassword" required ><br>
+
+            <!-- Submit button -->
+            <button type="submit" class="d-block mx-auto">Sign up</button><br>
+            
+            <!-- Display error messages and login link -->
+            <div class="text-center">
+              {% for message in messages %}
+                    <h5>{{ message }}</h5>
+              {% endfor %} 
+                Already have an account? <a href="{% url 'login' %}">Log in</a>
+            </div>
+        </form><br><br><br><br>
+      </div>
+  </div>
+
+  <!-- End of the content -->
+
+{% endblock content%}

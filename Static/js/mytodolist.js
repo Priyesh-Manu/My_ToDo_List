@@ -3,4 +3,6 @@
 function message() {
     alert('Thank you for your message. Our team will contact you soon via email.');
 }
-
+function update() {
+    alert('Your task is successfully updated.');
+}
